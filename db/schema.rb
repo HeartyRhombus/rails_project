@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_194836) do
+ActiveRecord::Schema.define(version: 2020_12_01_210613) do
 
   create_table "careers", force: :cascade do |t|
     t.string "name"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_194836) do
 
   create_table "characters", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "class_id"
+    t.integer "career_id"
     t.integer "race_id"
     t.string "name"
     t.integer "level", default: 1
