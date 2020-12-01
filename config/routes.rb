@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :careers
+  resources :races
   resources :characters
   root 'application#welcome'
 
