@@ -1,6 +1,6 @@
 class Race < ApplicationRecord
 
     has_many :characters
-    has_many :classes, through: :characters
-    
+    has_many :careers, through: :characters
+
 end
