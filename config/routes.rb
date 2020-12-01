@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :characters
   root 'application#welcome'
 
   devise_for :users, :controllers => 
