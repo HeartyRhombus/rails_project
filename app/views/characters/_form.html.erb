@@ -1,4 +1,15 @@
 <%= form_for @character do |c| %>
+    <% if @character.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@character.errors.count, "error") %>
+            prohibited this character from being saved: </h2>
+            <ul>
+                <% @character.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
     <%= c.hidden_field :user_id %>
     <%= c.label :name %>
     <%= c.text_field :name %>
@@ -6,20 +17,11 @@
     <%= c.label :level %>
     <%= c.number_field :level %>
     <br> <br>
-    <% if !@character.race_id %>
-      <%= c.collection_radio_buttons :race_id, Race.all, :id, :name %>
-        
-         <br><br>
-    <% else %>
-        <%= c.hidden_field :race_id %>
-    <% end %>
-
-    <% if !@character.career_id %>
-        <h4>Select a Career:</h4>
-        <%= c.collection_radio_buttons :career_id, Career.all, :id, :name %>
-    <% else %>
-        <%= c.hidden_field :career_id %>
-    <% end %>
+    <h4>Select a Race:</h4>
+    <%= c.label :race %>
+    <%= c.collection_radio_buttons :race_id, Race.all, :id, :name %>
+    <h4>Select a Career:</h4>
+    <%= c.collection_radio_buttons :career_id, Career.all, :id, :name %>
     <br>
     <%= c.submit %>
 <% end %>

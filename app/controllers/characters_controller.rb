@@ -18,12 +18,12 @@ class CharactersController < ApplicationController
 
     def create
         if current_user
-            @character = Character.create!(character_params)
-            if !@character
-                @character.errors.messages
-                render 'new'
+            @character = Character.new(character_params)
+            if @character.save
+                redirect_to @character
+            else
+                render :new
             end
-            redirect_to @character
         else
             redirect_to root_path, flash[:error] = "You must be signed in to access this page"
         end
