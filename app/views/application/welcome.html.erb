@@ -2,11 +2,11 @@
 
 <% if user_signed_in? %>
     <% current_user.characters.each do |c| %>
-        <%= link_to c.name, c %> - <%= c.level %>
+        <%= link_to c.name, c %> - <%= c.level %> <br>
     <% end %>
+    <br><br>
+    <%= link_to 'Add Character', new_character_path %>
 
 
 
-
-    
 <% end %>
