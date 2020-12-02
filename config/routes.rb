@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :careers, only: [:index, :show]
-  resources :races, only: [:index, :show]
+  resources :careers, only: [:index, :show] do
+    resources :characters, only: [:new, :create, :index]
+  end
+  resources :races, only: [:index, :show] do
+    resources :characters, only: [:new, :create, :index]
+  end
   resources :characters
   root 'application#welcome'
 
