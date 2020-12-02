@@ -1,4 +1,5 @@
 <%= form_for @character do |c| %>
+    <%= c.hidden_field :user_id %>
     <%= c.label :name %>
     <%= c.text_field :name %>
     <br>
@@ -6,11 +7,9 @@
     <%= c.number_field :level %>
     <br> <br>
     <% if !@character.race_id %>
-        <h4>Select a Race from the below factions:</h4>
-        <% Race.pluck(:faction).uniq.each do |f| %>
-            <u><%= c.label f %></u> <br>
-            <%= c.collection_radio_buttons(:race_id, Race.where(faction: f), :id, :name) %> <br><br>
-        <% end %>
+      <%= c.collection_radio_buttons :race_id, Race.all, :id, :name %>
+        
+         <br><br>
     <% else %>
         <%= c.hidden_field :race_id %>
     <% end %>
@@ -19,7 +18,7 @@
         <h4>Select a Career:</h4>
         <%= c.collection_radio_buttons :career_id, Career.all, :id, :name %>
     <% else %>
-            <%= c.hidden_field :career_id %>
+        <%= c.hidden_field :career_id %>
     <% end %>
     <br>
     <%= c.submit %>

@@ -14,8 +14,17 @@ class CharactersController < ApplicationController
 
     def create
         binding.pry
+        @character = Character.create!(character_params)
+        if !@character
+            @character.errors.messages
+            render 'new'
+        end
+        redirect_to @character
+    end
 
-
+    def show
+        binding.pry
+        @character = current_user.characters.find_by(params[:id])
     end
 
     def edit
