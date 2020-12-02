@@ -1,0 +1,5 @@
+<h3>Race Listing</h3>
+
+<% @races.each do |race| %>
+    <li><%= link_to race.name, race %></li>
+<% end %>

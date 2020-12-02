@@ -1,0 +1,5 @@
+<h3>Career Listing</h3>
+
+<% @careers.each do |career| %>
+    <li><%= link_to career.name, career %></li>
+<% end %>
