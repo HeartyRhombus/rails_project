@@ -2,7 +2,13 @@ class CharactersController < ApplicationController
 
     def index
         if current_user
-            @characters = current_user.characters.all
+            if params[:career_id]
+                @characters = current_user.characters.where("career_id = ?", params[:career_id])
+            elsif params[:race_id]
+                @characters = current_user.characters.where("race_id = ?", params[:race_id])
+            else
+                @characters = current_user.characters.all
+            end
         else
             redirect_to root_path
         end
