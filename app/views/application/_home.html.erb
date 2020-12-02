@@ -1,0 +1,14 @@
+<h1>Welcome Home!</h1>
+
+<% if user_signed_in? %>
+    <% current_user.characters.each do |c| %>
+        <li>
+        <%= link_to c.name, c %> - <%= c.level %>
+        </li>
+    <% end %>
+    <br> <br>
+    <%= link_to 'Add Character', new_character_path %>
+
+
+
+<% end %>
