@@ -31,7 +31,7 @@ class CharactersController < ApplicationController
 
     def show
         if current_user
-            @character = current_user.characters.find_by(params[:id])
+            set_character
         else
             redirect_to root_path
         end
@@ -39,7 +39,7 @@ class CharactersController < ApplicationController
 
     def edit
         if current_user
-
+            set_character
         else
             redirect_to root_path
         end
@@ -47,7 +47,9 @@ class CharactersController < ApplicationController
 
     def update
         if current_user
-
+            set_character
+            @character.update(character_params)
+            redirect_to @character
         else
             redirect_to root_path
         end
@@ -57,12 +59,16 @@ class CharactersController < ApplicationController
         if current_user
 
         else
-            
+
         end
     end
 
     private
     def character_params
         params.require(:character).permit(:name, :level, :race_id, :career_id, :user_id)
+    end
+
+    def set_character
+        @character = current_user.characters.find_by(params[:id])
     end
 end
