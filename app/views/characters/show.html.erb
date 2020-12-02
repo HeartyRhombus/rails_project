@@ -5,5 +5,7 @@ Faction: <%= @character.race.faction %>
 Level: <%= @character.level %>
 <br>
 Race: <%= @character.race.name %>
-<br>
+<br> <br>
 <%= link_to 'Edit Character', edit_character_path(@character) %>
+<br>
+<%= link_to 'Delete Character', @character , method: 'delete' %>
