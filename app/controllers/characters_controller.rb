@@ -1,42 +1,64 @@
 class CharactersController < ApplicationController
 
     def index
-        @characters = current_user.characters.all
+        if current_user
+            @characters = current_user.characters.all
+        else
+            redirect_to root_path
+        end
     end
 
     def new
-        @character = current_user.characters.build
-
-        # @character.race_id = 3
-        # @character.race.build
-        # @character.career.build
+        if current_user
+            @character = current_user.characters.build
+        else
+            redirect_to root_path
+        end
     end
 
     def create
-        binding.pry
-        @character = Character.create!(character_params)
-        if !@character
-            @character.errors.messages
-            render 'new'
+        if current_user
+            @character = Character.create!(character_params)
+            if !@character
+                @character.errors.messages
+                render 'new'
+            end
+            redirect_to @character
+        else
+            redirect_to root_path, flash[:error] = "You must be signed in to access this page"
         end
-        redirect_to @character
     end
 
     def show
-        binding.pry
-        @character = current_user.characters.find_by(params[:id])
+        if current_user
+            @character = current_user.characters.find_by(params[:id])
+        else
+            redirect_to root_path
+        end
     end
 
     def edit
+        if current_user
 
+        else
+            redirect_to root_path
+        end
     end
 
     def update
+        if current_user
 
+        else
+            redirect_to root_path
+        end
     end
 
     def destroy
+        if current_user
 
+        else
+            
+        end
     end
 
     private
