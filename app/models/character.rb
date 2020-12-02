@@ -5,4 +5,7 @@ class Character < ApplicationRecord
 
     validates :name, presence: true, uniqueness: true
     validates :level, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 60}
+
+    scope :horde, -> { joins(:race).where(races: {faction: "Horde"}) }
+    scope :alliance, -> { joins(:race).where(races: {faction: "Alliance"}) }
 end
