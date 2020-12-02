@@ -1,0 +1,9 @@
+<h1><%= @character.name %></h1>
+
+Faction: <%= @character.race.faction %>
+<br>
+Level: <%= @character.level %>
+<br>
+Race: <%= @character.race.name %>
+<br>
+<%= link_to 'Edit Character', edit_character_path(@character) %>

@@ -2,6 +2,11 @@
 
 <% if user_signed_in? %>
     <% current_user.characters.each do |c| %>
-        <%= c.name %> - <%= c.level %>
+        <%= link_to c.name, c %> - <%= c.level %>
     <% end %>
+
+
+
+
+    
 <% end %>
