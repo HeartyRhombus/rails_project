@@ -57,9 +57,11 @@ class CharactersController < ApplicationController
 
     def destroy
         if current_user
-
+            set_character
+            @character.delete
+            redirect_to root_path
         else
-
+            redirect_to root_path
         end
     end
 
@@ -69,6 +71,6 @@ class CharactersController < ApplicationController
     end
 
     def set_character
-        @character = current_user.characters.find_by(params[:id])
+        @character = current_user.characters.find_by(id: params[:id])
     end
 end
