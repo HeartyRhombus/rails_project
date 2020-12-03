@@ -2,8 +2,10 @@
 <%= @race.description %>
 <br><br>
 <% if current_user %>
-    <% !!current_user.characters.find_by(race_id: params[:id]) %>
-    <%= link_to "My #{@race.name} Characters", race_characters_path(@race) %>
+    
+    <% if !!current_user.characters.find_by(race_id: params[:id]) %>
+        <%= link_to "My #{@race.name} Characters", race_characters_path(@race) %>
     <br><br>
+    <% end %>
     <%= link_to "Add a #{@race.name} Character", new_race_character_path(@race) %>
 <% end %>
