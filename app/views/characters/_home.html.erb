@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
 
-    <% @characters.each do |c| %>
+    <% @characters.order(:name).each do |c| %>
         <li>
-        <%= link_to c.name, c %> - <%= c.level %>
+        <%= link_to c.name, c %> - Level: <%= c.level %>
         </li>
     <% end %>
     <br> <br>
