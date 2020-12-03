@@ -2,8 +2,9 @@
 <%= @career.description %>
 <br><br>
 
-<% if !!current_user.characters.find_by(career_id: params[:id]) %>
-    <%= link_to "My #{@career.name} Characters", career_characters_path(@career) %>
-<br><br>
+<% if current_user %>
+    <% !!current_user.characters.find_by(career_id: params[:id]) %>
+        <%= link_to "My #{@career.name} Characters", career_characters_path(@career) %>
+    <br><br>
+    <%= link_to "Add a #{@career.name} Character", new_career_character_path(@career) %>
 <% end %>
-<%= link_to "Add a #{@career.name} Character", new_career_character_path(@career) %>

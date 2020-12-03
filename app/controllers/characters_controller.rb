@@ -1,7 +1,7 @@
 class CharactersController < ApplicationController
+    before_action :require_login
 
     def index
-        if current_user
             if params[:career_id]
                 @characters = user_characters.where("career_id = ?", params[:career_id])
             elsif params[:race_id]
@@ -15,66 +15,40 @@ class CharactersController < ApplicationController
             else
                 @characters = user_characters
             end
-        else
-            redirect_to root_path
-        end
     end
 
     def new
-        if current_user
-            @character = user_characters.build
-        else
-            redirect_to root_path
-        end
+        @character = user_characters.build
     end
 
     def create
-        if current_user
-            @character = Character.new(character_params)
-            if @character.save
-                redirect_to @character
-            else
-                render :new
-            end
+        @character = Character.new(character_params)
+        if @character.save
+            redirect_to @character
         else
-            redirect_to root_path, flash[:error] = "You must be signed in to access this page"
+            render :new
         end
     end
 
     def show
-        if current_user
-            set_character
-        else
-            redirect_to root_path
-        end
+        set_character
     end
 
     def edit
-        if current_user
-            set_character
-        else
-            redirect_to root_path
-        end
+        set_character
     end
 
     def update
-        if current_user
-            set_character
-            @character.update(character_params)
-            redirect_to @character
-        else
-            redirect_to root_path
-        end
+        set_character
+        @character.update(character_params)
+        redirect_to @character
     end
 
     def destroy
-        if current_user
-            set_character
-            @character.delete
-            redirect_to root_path
-        else
-            redirect_to root_path
-        end
+        set_character
+        @character.delete
+        redirect_to root_path
+
     end
 
     private
@@ -87,6 +61,8 @@ class CharactersController < ApplicationController
     end
 
     def user_characters
-        current_user.characters
+        if current_user
+            current_user.characters
+        end
     end
 end
