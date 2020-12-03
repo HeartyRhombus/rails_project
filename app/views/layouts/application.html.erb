@@ -11,6 +11,9 @@
 
   <body>
     <%= render 'layouts/nav' %>
+    <% if flash[:error] %>
+      <div class="error"><%= flash[:error] %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
