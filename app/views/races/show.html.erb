@@ -1,5 +1,5 @@
 <h3><%= @race.name %></h3>
-#DESCRIPTION
+<%= @race.description %>
 <br><br>
 <% if !!current_user.characters.find_by(race_id: params[:id]) %>
     <%= link_to "My #{@race.name} Characters", race_characters_path(@race) %>

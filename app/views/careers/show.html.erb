@@ -1,5 +1,5 @@
 <h3><%= @career.name %></h3>
-#DESCRIPTION
+<%= @career.description %>
 <br><br>
 
 <% if !!current_user.characters.find_by(career_id: params[:id]) %>
