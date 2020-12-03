@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
 
-    def welcome
-        
+    def welcome       
         @characters = current_user.characters
     end
 

@@ -7,4 +7,8 @@ module RacesHelper
         end
     end
 
+    def faction_list
+        Race.all.map {|r| r.faction}.uniq
+    end
+
 end

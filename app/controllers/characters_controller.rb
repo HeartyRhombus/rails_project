@@ -3,11 +3,17 @@ class CharactersController < ApplicationController
     def index
         if current_user
             if params[:career_id]
-                @characters = current_user.characters.where("career_id = ?", params[:career_id])
+                @characters = user_characters.where("career_id = ?", params[:career_id])
             elsif params[:race_id]
-                @characters = current_user.characters.where("race_id = ?", params[:race_id])
+                @characters = user_characters.where("race_id = ?", params[:race_id])
+            elsif !params[:faction].blank?
+                if params[:faction] == "Horde"
+                    @characters = user_characters.horde
+                elsif params[:faction] == "Alliance"
+                    @characters = user_characters.alliance
+                end
             else
-                @characters = current_user.characters.all
+                @characters = user_characters
             end
         else
             redirect_to root_path
@@ -16,7 +22,7 @@ class CharactersController < ApplicationController
 
     def new
         if current_user
-            @character = current_user.characters.build
+            @character = user_characters.build
         else
             redirect_to root_path
         end
@@ -78,5 +84,9 @@ class CharactersController < ApplicationController
 
     def set_character
         @character = current_user.characters.find_by(id: params[:id])
+    end
+
+    def user_characters
+        current_user.characters
     end
 end
