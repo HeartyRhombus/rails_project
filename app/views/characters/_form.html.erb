@@ -18,10 +18,9 @@
     <%= c.number_field :level %>
     <br> <br>
     <h4>Select a Race:</h4>
-    <%= c.label :race %>
-    <%= c.collection_radio_buttons :race_id, Race.all, :id, :name, checked: params[:race_id] %>
+    <%= c.collection_radio_buttons :race_id, Race.all.order(:name), :id, :name, checked: params[:race_id] %>
     <h4>Select a Career:</h4>
-    <%= c.collection_radio_buttons :career_id, Career.all, :id, :name, checked: params[:career_id] %>
+    <%= c.collection_radio_buttons :career_id, Career.all.order(:name), :id, :name, checked: params[:career_id] %>
     <br>
     <%= c.submit %>
 <% end %>
