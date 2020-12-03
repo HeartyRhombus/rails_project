@@ -1,11 +1,5 @@
 <% if user_signed_in? %>
 
-    Filter by faction:
-    <%= form_tag("/characters", method: "get") do %>
-        <%= select_tag "faction", options_for_select(faction_list), include_blank: true %>
-        <%= submit_tag "Filter" %>
-    <% end %>
-    <br><br>
     <% @characters.each do |c| %>
         <li>
         <%= link_to c.name, c %> - <%= c.level %>
