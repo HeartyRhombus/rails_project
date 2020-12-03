@@ -1,11 +1,13 @@
 <h1>Welcome Home!</h1>
 
-Filter by faction:
-<%= form_tag("/characters", method: "get") do %>
-    <%= select_tag "faction", options_for_select(faction_list), include_blank: true %>
-    <%= submit_tag "Filter" %>
+<% if user_signed_in? %>
+    Filter by faction:
+    <%= form_tag("/characters", method: "get") do %>
+        <%= select_tag "faction", options_for_select(faction_list), include_blank: true %>
+        <%= submit_tag "Filter" %>
+    <% end %>
+    <br><br>
 <% end %>
-<br><br>
 
 <%= render '/characters/home' %>
 
