@@ -2,23 +2,11 @@ class CharactersController < ApplicationController
     before_action :require_login
 
     def index
-            if params[:career_id]
-                @characters = user_characters.where("career_id = ?", params[:career_id])
-            elsif params[:race_id]
-                @characters = user_characters.where("race_id = ?", params[:race_id])
-            elsif !params[:faction].blank?
-                if params[:faction] == "Horde"
-                    @characters = user_characters.horde
-                elsif params[:faction] == "Alliance"
-                    @characters = user_characters.alliance
-                end
-            else
-                @characters = user_characters
-            end
+        @characters = Character.characters_for_display(params, current_user.characters)
     end
 
     def new
-        @character = user_characters.build
+        @character = current_user.characters.build
     end
 
     def create
@@ -60,9 +48,5 @@ class CharactersController < ApplicationController
         @character = current_user.characters.find_by(id: params[:id])
     end
 
-    def user_characters
-        if current_user
-            current_user.characters
-        end
-    end
+    
 end
