@@ -1,8 +1,11 @@
-<h1>
-Welcome to Your
-<br>
-World of Warcraft Character Collector!
-</h1>
+<% if user_signed_in? %>
+    <h1 style="text-align: center">Welcome to Your<br>World of Warcraft Character Tracker!</h1>
+<% else %>
+    <h1 style="text-align: center">Welcome to the<br>World of Warcraft Character Tracker!</h1>
+    <br>
+    <i>Please login or sign up to view and/or add characters,<br>or feel free to browse available races and careers!</i>
+<% end %>
+
 
 <% if user_signed_in? %>
     Filter by faction:
