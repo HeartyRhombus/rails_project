@@ -4,8 +4,8 @@
 
 <% if current_user %>
     <% if !!current_user.characters.find_by(career_id: params[:id]) %>
-        <%= link_to "My #{@career.name} Characters", career_characters_path(@career) %>
+        <%= link_to "My #{@career.name} Characters", career_characters_path(@career), class: "btn btn-outline-info" %>
     <br><br>
     <% end %>
-    <%= link_to "Add a #{@career.name} Character", new_career_character_path(@career) %>
+    <%= link_to "Add a #{@career.name} Character", new_career_character_path(@career), class: "btn btn-outline-info" %>
 <% end %>

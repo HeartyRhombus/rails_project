@@ -19,5 +19,5 @@
 <%= render '/characters/home' %>
 
 <% if current_user %>
-    <%= link_to 'Add Character', new_character_path %>
+    <%= link_to 'Add Character', new_character_path, class: "btn btn-outline-info" %>
 <% end %>

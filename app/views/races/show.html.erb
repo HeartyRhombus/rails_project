@@ -4,8 +4,8 @@
 <% if current_user %>
     
     <% if !!current_user.characters.find_by(race_id: params[:id]) %>
-        <%= link_to "My #{@race.name} Characters", race_characters_path(@race) %>
+        <%= link_to "My #{@race.name} Characters", race_characters_path(@race), class: "btn btn-outline-info" %>
     <br><br>
     <% end %>
-    <%= link_to "Add a #{@race.name} Character", new_race_character_path(@race) %>
+    <%= link_to "Add a #{@race.name} Character", new_race_character_path(@race), class: "btn btn-outline-info" %>
 <% end %>
