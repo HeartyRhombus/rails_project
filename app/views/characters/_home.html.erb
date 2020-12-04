@@ -1,10 +1,9 @@
 <% if user_signed_in? %>
-
+<ul class="list-group">
     <% @characters.order(:name).each do |c| %>
-        <li>
-        <%= link_to c.name, c %> - Level: <%= c.level %>
-        </li>
+        <%= link_to "#{c.name} - Level: #{c.level}", c, class: "list-group-item list-group-item-action btn btn-outline-info" %>
     <% end %>
+</ul>
     <br> <br>
 
 <% end %>

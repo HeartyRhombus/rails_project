@@ -1,5 +1,6 @@
 <h3>Race Listing</h3>
-
-<% @races.order(:name).each do |race| %>
-    <li><%= link_to race.name, race %></li>
-<% end %>
+<ul class="list-group">
+    <% @races.order(:name).each do |race| %>
+        <%= link_to race.name, race, class: " list-group-item list-group-item-action btn btn-outline-info" %>
+    <% end %>
+</ul>
