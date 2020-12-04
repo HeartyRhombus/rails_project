@@ -1,11 +1,9 @@
 <h1><%= @character.name %></h1>
-
-Faction: <%= @character.race.faction %>
-<br>
-Level: <%= @character.level %>
-<br>
-Race: <%= @character.race.name %>
-<br> <br>
-<%= link_to 'Edit Character', edit_character_path(@character) %>
-<br>
-<%= link_to 'Delete Character', @character , method: 'delete' %>
+<ul class="list-group">
+    <li class="list-group-item">Faction: <%= @character.race.faction %></li>
+    <li class="list-group-item">Level: <%= @character.level %></li>
+    <%= link_to "Race: #{@character.race.name}", @character.race, class: "list-group-item list-group-item-action btn btn-outline-info" %>
+    <%= link_to "Career: #{@character.career.name}", @character.career, class: "list-group-item list-group-item-action btn" %>
+<%= link_to 'Edit Character', edit_character_path(@character), class: "btn btn-outline-info" %>
+<%= link_to 'Delete Character', @character , method: 'delete', class: "btn btn-outline-info" %>
+</ul>
