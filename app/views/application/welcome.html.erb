@@ -8,12 +8,16 @@
 
 
 <% if user_signed_in? %>
+<%= random_career %>
+<br><br>
     Filter by faction:
     <%= form_tag("/characters", method: "get") do %>
         <%= select_tag "faction", options_for_select(faction_list), include_blank: true %>
         <%= submit_tag "Filter" %>
     <% end %>
     <br><br>
+
+
 <% end %>
 
 <%= render '/characters/home' %>

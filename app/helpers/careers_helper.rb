@@ -6,4 +6,10 @@ module CareersHelper
             career.name
         end
     end
+
+    def random_career
+        @career = Career.all.sample
+        "#{@career.name}:  #{@career.description}"
+    end
+    
 end
