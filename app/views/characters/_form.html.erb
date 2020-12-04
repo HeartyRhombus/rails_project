@@ -11,16 +11,28 @@
         </div>
     <% end %>
     <%= c.hidden_field :user_id %>
-    <%= c.label :name %>
+    <%= c.label :name%>
     <%= c.text_field :name %>
     <br>
     <%= c.label :level %>
     <%= c.number_field :level %>
     <br> <br>
     <h4>Select a Race:</h4>
-    <%= c.collection_radio_buttons :race_id, Race.all.order(:name), :id, :name, checked: params[:race_id] %>
+    <%= c.collection_radio_buttons :race_id, Race.all.order(:name), :id, :name, checked: params[:race_id] do |b| %>
+        <div class="custom-control custom-radio custom-control-inline row">
+            <%= b.label do %>
+            <%= b.radio_button + b.text %>
+            <% end %>
+        </div>
+    <% end %>
     <h4>Select a Career:</h4>
-    <%= c.collection_radio_buttons :career_id, Career.all.order(:name), :id, :name, checked: params[:career_id] %>
+    <%= c.collection_radio_buttons :career_id, Career.all.order(:name), :id, :name, checked: params[:career_id]  do |b| %>
+        <div class="custom-control custom-radio custom-control-inline row">
+            <%= b.label do %>
+            <%= b.radio_button + b.text %>
+            <% end %>
+        </div>
+    <% end %>
     <br>
     <%= c.submit %>
 <% end %>
