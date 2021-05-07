@@ -1,6 +1,23 @@
-<h3>Race Listing</h3>
-<ul class="list-group">
-    <% @races.order(:name).each do |race| %>
-        <%= link_to race.name, race, class: " list-group-item list-group-item-action btn btn-outline-info" %>
-    <% end %>
-</ul>
+<h3>Races Listing</h3>
+
+<div>
+    <b><u>Alliance:</u></b>
+    <ul class="list-group">
+        <%@races.order(:name).each do |race| %>
+            <% if race.faction === "Alliance" %>
+                    <%= link_to race.name, race, class: " list-group-item list-group-item-action btn btn-outline-info" %>
+            <% end %>
+        <% end %>
+    </ul>
+</div>
+<br>
+<div>
+    <b><u>Horde:</u></b>
+    <ul class="list-group">
+        <%@races.order(:name).each do |race| %>
+            <% if race.faction === "Horde" %>
+                    <%= link_to race.name, race, class: " list-group-item list-group-item-action btn btn-outline-info" %>
+            <% end %>
+        <% end %>
+    </ul>
+</div>
