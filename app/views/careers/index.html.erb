@@ -1,4 +1,4 @@
-<h3>Career Listing</h3>
+<h3>Careers Listing</h3>
 <ul class="list-group">
     <% @careers.order(:name).each do |career| %>
         <%= link_to career.name, career, class: " list-group-item list-group-item-action btn btn-outline-info" %>
